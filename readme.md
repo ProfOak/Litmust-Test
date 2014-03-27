@@ -5,6 +5,6 @@ A while ago I was playing Minesweeper and the client I was using displayed time 
 
 **Usage:**
 
-`./time2sex.py 12:34:56`
+`$ ./time2sex.py 12:34:56`
 
 `=== 45296 seconds ===`
