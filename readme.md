@@ -1,7 +1,7 @@
 time2sex
 ========
 
-A command line utility to convert standard time (HH:MM:SS) into seconds
+A command line utility to convert standard time (HH:MM:SS) into seconds.
 
 Why?
 ====
@@ -14,14 +14,22 @@ A while ago I was playing Minesweeper and the client I was using displayed time 
 Python
 ------
 
-`$ ./time2sex.py 12:34:56`
+Add executable privileges to the python file with chmod.
 
-`=== 45296 seconds ===`
+[chmod examples](http://www.thegeekstuff.com/2010/06/chmod-command-examples/)
+
+```
+$ chmod u+x time2sex.py
+$ ./time2sex.py 12:34:56
+=== 45296 seconds ===
+```
 
 C
 -
 
-`$ ./time2sex 12:34:56`
-
-`=== 45296 seconds ===`
+```
+$ gcc -o time2sex time2sex.c
+$ ./time2sex 12:34:56
+=== 45296 seconds ===
+```
 
