@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
 void swap(int *x, int *y) {
@@ -15,9 +14,8 @@ void splitToInts(char *str, int t[], char delimiter) {
     // split by ':'
     int i;
     int j = 0, k = 0;
-
-    int slen = strlen(str);
-    for (i = 0; i < slen; i++) {
+    
+    for (i = 0; str[i] != '\0'; i++) {
         // found a match, separate by delimiter
         if (str[i] == delimiter && j < 3) {
             tmp[j++][k] = '\0';
@@ -52,7 +50,7 @@ int time_to_seconds(char *time) {
     
     // split by ':' and store in array 't'
     splitToInts(time, t, ':');
-
+    
     // total seconds 
     return t[0]*3600 + t[1]*60 + t[2];    
 }
