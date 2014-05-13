@@ -33,3 +33,11 @@ $ ./time2sex 12:34:56
 === 45296 seconds ===
 ```
 
+Go
+--
+
+```
+$ go build time2sex.go
+$ ./time2sex 12:34:56
+=== 45296 seconds ===
+```
