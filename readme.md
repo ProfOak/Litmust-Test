@@ -41,4 +41,17 @@ $ ./time2sex 12:34:56
 Now installable
 ===
 
+Just add install at the end of the one you want to compile
+
 Python
+------
+`make py install`
+
+C
+-
+`make c install`
+
+Go
+--
+`make go install`
+
