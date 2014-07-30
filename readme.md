@@ -38,7 +38,7 @@ $ ./time2sex 12:34:56
 === 45296 seconds ===
 ```
 
-Instal
+Install
 -----
 
 Just add install at the end of the one you want to compile
