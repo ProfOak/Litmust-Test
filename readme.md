@@ -14,29 +14,28 @@ A while ago I was playing Minesweeper and the client I was using displayed time 
 Python
 ------
 
-```
-$ make py 
-$ ./time2sex 12:34:56
-=== 45296 seconds ===
-```
+`$ make py`
 
 C
 -
 
-```
-$ make c
-$ ./time2sex 12:34:56
-=== 45296 seconds ===
-```
+`$ make c`
 
 Go
 --
 
-```
-$ make go
-$ ./time2sex 12:34:56
-=== 45296 seconds ===
-```
+`$ make go`
+
+Racket
+------
+
+`$ make rkt`
+
+or
+
+`$ make rkt-script`
+
+
 
 Install
 -----
@@ -55,3 +54,10 @@ Go
 --
 `make go install`
 
+Racket
+------
+`make rkt install`
+
+or
+
+`make rkt-script install`
