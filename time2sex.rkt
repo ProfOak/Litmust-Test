@@ -3,7 +3,7 @@
 
 ; time2sex in Racket 
 
-(define helpstring "Please enter a command line arg\nHH:MM:SS\nEX:\n    time2sex 1:23:45")
+(define help-string "Please enter a command line arg\nHH:MM:SS\nEX:\n    time2sex 1:23:45")
 
 (define (printsex s)
   (printf "=== ~a seconds ===\n" s))
@@ -22,7 +22,7 @@
   (let ([t (map string->number (string-split time ":"))])
     (cond 
     [(equal? 1 (length t))    ; seconds only
-     (printsex  (list-ref t 0))]
+     (printsex  (first t))]
     [(equal? 2 (length t))    ; minutes:seconds
      (printsex (get-numbers t (list 60 1)))]
     [(equal? 3 (length t))    ; hours:minutes:seconds
@@ -30,7 +30,7 @@
      
 
 ; main function
-(let ([args (vector->list (current-command-line-arguments))])
-  (if (equal? 1 (length args))
-     (convert (list-ref args 0))
-     (displayln helpstring)))
+(let ([args (current-command-line-arguments)])
+  (if (equal? 1 (vector-length args))
+     (convert (vector-ref args 0))
+     (displayln help-string)))
