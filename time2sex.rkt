@@ -3,10 +3,7 @@
 
 ; time2sex in Racket 
 
-(define helpstring "Please enter a command line arg
-HH:MM:SS
-EX:
-    time2sex 1:23:45")
+(define helpstring "Please enter a command line arg\nHH:MM:SS\nEX:\n    time2sex 1:23:45")
 
 (define (printsex s)
   (printf "=== ~a seconds ===\n" s))
@@ -28,7 +25,7 @@ EX:
      (printsex  (list-ref t 0))]
     [(equal? 2 (length t))    ; minutes:seconds
      (printsex (get-numbers t (list 60 1)))]
-    [(equal? 3 (length t))
+    [(equal? 3 (length t))    ; hours:minutes:seconds
      (printsex (get-numbers t (list 3600 60 1)))])))
      
 
