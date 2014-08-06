@@ -8,7 +8,7 @@ def time_to_seconds(time):
         print "Please provide valid input"
         sys.exit()
     # python golf
-    return sum( [ [1,60,3600][i]*j for i, j in enumerate(reversed(time))] )
+    return sum( [ [1,60,3600][i]*j for i, j in enumerate(reversed(time[:3]))] )
    
 if __name__ == "__main__":
     if len(sys.argv) == 2:
