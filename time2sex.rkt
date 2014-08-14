@@ -9,7 +9,7 @@
 
 (define (get-seconds l1 l2)
   (let ([multiplied-numbers (map * l1 l2)])
-    (foldl + 0 multiplied-numbers)))
+    (apply + multiplied-numbers)))
 
 (define (convert time) 
   (let ([t (map string->number (string-split time ":"))])
