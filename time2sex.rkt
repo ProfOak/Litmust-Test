@@ -3,10 +3,6 @@
 
 ; time2sex in Racket 
 
-(define help-string "Please enter a command line arg\nHH:MM:SS\nEX:\n    time2sex 12:34:56")
-
-(define (printsex s) (printf "=== ~a seconds ===\n" s))
-
 (define (get-seconds l1 l2)
   (let ([multiplied-numbers (map * l1 l2)])
     (apply + multiplied-numbers)))
@@ -21,5 +17,5 @@
 ; main function
 (let ([args (current-command-line-arguments)])
   (if (equal? 1 (vector-length args))
-     (printsex (convert (vector-ref args 0)))
-     (displayln help-string)))
+     (printf "=== ~a seconds ===\n"  (convert (vector-ref args 0)))
+     (displayln "Please enter a command line arg\nHH:MM:SS\nEX:\n    time2sex 12:34:56")))
