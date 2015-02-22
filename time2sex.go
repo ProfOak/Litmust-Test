@@ -42,3 +42,4 @@ func main() {
 		fmt.Println("example: ./time2sex 12:34:56")
 	}
 }
+

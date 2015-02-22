@@ -19,3 +19,4 @@ if __name__ == "__main__":
         print "HH:MM:SS"
         print "EX:"
         print "    time2sex 1:23:45"
+
