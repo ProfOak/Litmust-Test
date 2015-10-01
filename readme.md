@@ -6,58 +6,5 @@ A command line utility to convert standard time (HH:MM:SS) into seconds.
 Why?
 ====
 
-A while ago I was playing Minesweeper and the client I was using displayed time in an MM:SS format, and I preferred seconds only, so I made this. After I made a version in python I challenged myself to use my beginner C skills and come up with a C solution.
+A while ago I was playing Minesweeper and the client I was using displayed time in an MM:SS format, and I preferred seconds only, so I made this. time2sex has since become a litmus test to see if I understand the basics of a new programming language or not.
 
-**Test usage:**
-
-
-Python
-------
-
-`$ make py`
-
-C
--
-
-`$ make c`
-
-Go
---
-
-`$ make go`
-
-Racket
-------
-
-`$ make rkt`
-
-or
-
-`$ make rkt-script`
-
-
-
-Install
------
-
-Just add install at the end of the one you want to compile
-
-Python
-------
-`make py install`
-
-C
--
-`make c install`
-
-Go
---
-`make go install`
-
-Racket
-------
-`make rkt install`
-
-or
-
-`make rkt-script install`
