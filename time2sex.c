@@ -7,7 +7,7 @@ void swap(int *x, int *y) {
     *y = tmp;
 }
 
-void splitToInts(char *str, int t[], char delimiter) {
+void split_to_ints(char *str, int t[], char delimiter) {
     // 2 didgits and a null char
     char tmp[3][3];
 
@@ -23,7 +23,6 @@ void splitToInts(char *str, int t[], char delimiter) {
         else {
             tmp[j][k++] = str[i];
         }
-
     }
 
 
@@ -48,24 +47,23 @@ void splitToInts(char *str, int t[], char delimiter) {
 int time_to_seconds(char *time) {
     // t = {HH,MM,SS}
     int t[] = {0, 0, 0};
-    int seconds = 0;
 
-    // split by ':' and store in array 't'
-    splitToInts(time, t, ':');
+    // split by : and store in array t
+    split_to_ints(time, t, ':');
 
     // total seconds
     return t[0]*3600 + t[1]*60 + t[2];
 }
 
 int main(int argc, char *args[]) {
-    if (argc == 2)
-        // basically the entire program
+    if (argc == 2) {
         printf("=== %d seconds ===\n", time_to_seconds(args[1]));
+    }
     else {
         puts("Please enter a command line arg");
         puts("HH:MM:SS");
         puts("Example:");
-        puts("time2sex 1:23:45");
+        puts("time2sex 12:34:56");
     }
     return 0;
 }
