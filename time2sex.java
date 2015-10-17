@@ -4,6 +4,10 @@ import java.util.*;
 public class time2sex {
     public static void main(String[] args) {
         if (args.length != 1) {
+            System.out.println("Please enter a command line arg");
+            System.out.println("HH:MM:SS");
+            System.out.println("Example:");
+            System.out.println("    time2sex 12:34:56");
             return;
         }
 
