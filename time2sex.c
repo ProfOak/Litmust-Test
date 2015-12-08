@@ -1,58 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-void swap(int *x, int *y) {
-    int tmp = *x;
-    *x = *y;
-    *y = tmp;
+int count(char time[], char delim) {
+    int sum = 0;
+    int i;
+    for (i = 0; time[i] != '\0'; i++)
+        if (time[i] == delim)
+            sum++;
+    return sum;
+
 }
-
-void split_to_ints(char *str, int t[], char delimiter) {
-    // 2 didgits and a null char
-    char tmp[3][3];
-
-    // split by ':'
-    int i = 0, j = 0, k = 0;
-
-    for (i = 0; str[i] != '\0'; i++) {
-        // found a match, separate by delimiter
-        if (str[i] == delimiter && j < 3) {
-            tmp[j++][k] = '\0';
-            k = 0;
-        }
-        else {
-            tmp[j][k++] = str[i];
-        }
-    }
-
-
-    // ascii to int conversion
-    for (i = 0; i <= 3; i++) {
-         t[i] = atoi(tmp[i]);
-    }
-
-    // Goal is to have the format HH:MM:SS for time
-    // Hours and Minutes not present in input (seconds only)
-    if (t[2] == 0 && t[1] == 0) {
-       // seconds to the end
-        swap(&t[0], &t[2]);
-    }
-    // Minutes and seconds only
-    else if (t[2] == 0) {
-        swap(&t[0], &t[2]);
-        swap(&t[1], &t[2]);
-    }
-}
-
 int time_to_seconds(char *time) {
-    // t = {HH,MM,SS}
+    char *token;
     int t[] = {0, 0, 0};
+    char delim = ':';
+    int time_i = count(time, delim);
 
-    // split by : and store in array t
-    split_to_ints(time, t, ':');
+    // populate array in reverse
+    // depending on number of indices
+    token = strtok(time, ":");
+    t[time_i--] = atoi(token);
 
-    // total seconds
-    return t[0]*3600 + t[1]*60 + t[2];
+    while ((token = strtok(NULL, ":")) != NULL)
+        t[time_i--] = atoi(token);
+
+    return t[0] + t[1]*60 + t[2]*3600;
 }
 
 int main(int argc, char *args[]) {
