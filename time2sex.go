@@ -22,11 +22,9 @@ func time2sex(s string) int {
 	}
 	time[j], _ = strconv.Atoi(s[:to+1])
 
-	i := 0
 	conversions := [3]int{3600, 60, 1}
-	for _, c := range conversions {
+	for i, c := range conversions {
 		seconds += time[i] * c
-		i++
 	}
 	return seconds
 }
@@ -42,4 +40,3 @@ func main() {
 		fmt.Println("example: ./time2sex 12:34:56")
 	}
 }
-
