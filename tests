@@ -1,0 +1,37 @@
+#!/bin/bash
+
+function test_result() {
+    echo -n "Test status: "
+    if [[ "$1" == "=== 45296 seconds ===" ]]; then
+        echo "PASSED"
+    else
+        echo "FAILED"
+    fi
+}
+
+echo "C version"
+make c
+test_result "$(./time2sex 12:34:56)"
+
+echo
+echo "Go version"
+make go
+test_result "$(./time2sex 12:34:56)"
+
+echo
+echo "Java version"
+make java
+test_result "$(java time2sex 12:34:56)"
+
+echo
+echo "Python version"
+make py
+test_result "$(./time2sex 12:34:56)"
+
+echo
+echo "Racket version"
+make rkt
+test_result "$(./time2sex 12:34:56)"
+
+echo
+make clean
