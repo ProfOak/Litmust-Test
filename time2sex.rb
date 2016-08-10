@@ -1,4 +1,4 @@
-
+#!/usr/bin/env ruby
 
 def time2sex(time)
     secs = [1, 60, 3600]
