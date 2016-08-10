@@ -13,5 +13,5 @@ if __name__ == "__main__":
         print "Please enter a command line arg"
         print "HH:MM:SS"
         print "EX:"
-        print "    time2sex 1:23:45"
+        print "    time2sex 12:34:56"
 
