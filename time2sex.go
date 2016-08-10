@@ -1,40 +1,44 @@
 package main
 
 import (
-	"flag"
 	"fmt"
+	"os"
 	"strconv"
+	"strings"
 )
 
-func time2sex(s string) int {
-	var time [3]int
-	j := 2 // backward traversal
-	to := len(s) - 1
-	from := 0
-	seconds := 0
-	for i := len(s) - 1; i > 0; i-- {
-		if s[i] == ':' {
-			from = i + 1
-			time[j], _ = strconv.Atoi(s[from : to+1])
-			j--
-			to = i - 1
-		}
-	}
-	time[j], _ = strconv.Atoi(s[:to+1])
+func time2sex(str string) int {
 
-	conversions := [3]int{3600, 60, 1}
-	for i, c := range conversions {
-		seconds += time[i] * c
+	var (
+		seconds     int
+		s           int
+		time        []string
+		conversions [3]int
+	)
+
+	conversions = [3]int{1, 60, 3600}
+	time = strings.Split(str, ":")
+	reverse(time)
+
+	for i, t := range time {
+		s, _ = strconv.Atoi(t)
+		seconds += s * conversions[i]
 	}
+
 	return seconds
 }
 
-func main() {
-	flag.Parse()
-	args := flag.Args()
+func reverse(s []string) {
+	for i := len(s)/2 - 1; i >= 0; i-- {
+		j := len(s) - 1 - i
+		s[i], s[j] = s[j], s[i]
+	}
+}
 
-	if len(args) == 1 {
-		fmt.Println("===", time2sex(args[0]), "seconds ===")
+func main() {
+
+	if len(os.Args) == 2 {
+		fmt.Println("===", time2sex(os.Args[1]), "seconds ===")
 	} else {
 		fmt.Println("[Incorrect input]")
 		fmt.Println("example: ./time2sex 12:34:56")
