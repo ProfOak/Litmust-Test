@@ -34,4 +34,9 @@ make rkt
 test_result "$(./time2sex 12:34:56)"
 
 echo
+echo "Ruby version"
+make rb
+test_result "$(./time2sex 12:34:56)"
+
+echo
 make clean
