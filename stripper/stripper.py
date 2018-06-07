@@ -5,24 +5,27 @@ import os
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('filename', help='filename to strip whitespace from')
+    parser.add_argument(
+        'filenames',
+        nargs='+',
+        help='filename to strip whitespace from',
+    )
     args = parser.parse_args()
 
-    if not args.filename or not os.path.exists(args.filename):
-        print('no')
+    for filename in args.filenames:
+        if not os.path.exists(filename):
+            print('Cannot open file {}'.format(filename))
 
-    with open(args.filename) as f:
-        contents = stripper(f.read())
+        with open(filename) as f:
+            contents = stripper(f.read())
 
-    with open(args.filename, 'w') as f:
-        f.write(contents)
+        with open(filename, 'w') as f:
+            f.write(contents)
 
 
 def stripper(contents):
-    contents = contents.rstrip()
-    return '\n'.join([line.rstrip() for line in file_contents.split('\n')])
+    return '\n'.join([line.rstrip() for line in contents.split('\n')]).rstrip()
 
 
 if __name__ == '__main__':
     main()
-

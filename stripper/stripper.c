@@ -8,21 +8,32 @@
 #define is_whitespace(c) (is_space(c) || is_newline(c))
 
 void usage(void);
+void strip_file(char *filename);
 char *stripper(char *buffer, unsigned int file_size);
 char *rstrip(char *line);
 
 int main(int argc, char **argv) {
+    if (argc < 2) {
+        usage();
+    }
+
+    for (int i = 1; i < argc; i++) {
+        strip_file(argv[i]);
+    }
+}
+
+
+/**
+ * strip_file opens, reads, strips, and overwrites a file given a filename.
+ */
+void strip_file(char * filename) {
     int file_size;
     char *buffer;
     FILE *file_pointer;
 
-    if (argc != 2) {
-        usage();
-    }
-
-    file_pointer = fopen(argv[1], "r");
+    file_pointer = fopen(filename, "r");
     if (!file_pointer) {
-        printf("Cannot open file %s\n", argv[1]);
+        printf("Cannot open file %s\n", filename);
         exit(1);
     }
 
@@ -38,9 +49,11 @@ int main(int argc, char **argv) {
     fclose(file_pointer);
 
     buffer = stripper(buffer, file_size);
-    file_pointer = fopen(argv[1], "w");
+    file_pointer = fopen(filename, "w");
     fprintf(file_pointer, buffer, 1);
+
     fclose(file_pointer);
+    free(buffer);
 }
 
 
@@ -49,7 +62,7 @@ int main(int argc, char **argv) {
  */
 void usage(void) {
     puts("Usage:");
-    puts("    stripper filename.txt");
+    puts("    stripper filename.txt [filename2.txt ...]");
     exit(0);
 }
 
@@ -61,7 +74,7 @@ void usage(void) {
 char *stripper(char *buffer, unsigned int file_size) {
 
     // The new buffer will be at most as large as the original buffer.
-    char *new_buffer = malloc(sizeof(char) *file_size);
+    char *new_buffer = malloc(sizeof(char) * file_size);
     char *token;
 
     // Zero out new buffer to later append to it.
