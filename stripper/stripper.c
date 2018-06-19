@@ -33,7 +33,7 @@ void strip_file(char * filename) {
 
     file_pointer = fopen(filename, "r");
     if (!file_pointer) {
-        printf("Cannot open file %s\n", filename);
+        printf("Cannot open file: %s\n", filename);
         exit(1);
     }
 

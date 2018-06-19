@@ -11,32 +11,32 @@ function test_result() {
 
 echo "C version"
 make c
-test_result "$(./time2sex 12:34:56)"
+test_result "$(time ./time2sex 12:34:56)"
 
 echo
 echo "Go version"
 make go
-test_result "$(./time2sex 12:34:56)"
+test_result "$(time ./time2sex 12:34:56)"
 
 echo
 echo "Java version"
 make java
-test_result "$(java time2sex 12:34:56)"
+test_result "$(time java time2sex 12:34:56)"
 
 echo
 echo "Python version"
 make py
-test_result "$(./time2sex 12:34:56)"
+test_result "$(time ./time2sex 12:34:56)"
 
 echo
 echo "Racket version"
 make rkt
-test_result "$(./time2sex 12:34:56)"
+test_result "$(time ./time2sex 12:34:56)"
 
 echo
 echo "Ruby version"
 make rb
-test_result "$(./time2sex 12:34:56)"
+test_result "$(time ./time2sex 12:34:56)"
 
 echo
 make clean
