@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-def time2sex(time)
+def time2secs(time)
     secs = [1, 60, 3600]
     time = time.split(":").reverse
     seconds = 0
@@ -13,10 +13,10 @@ def time2sex(time)
 end
 
 if ARGV.length == 1
-    puts time2sex(ARGV[0])
+    puts time2secs(ARGV[0])
 else
     puts "Please enter a command line arg"
     puts "HH:MM:SS"
     puts "EX:"
-    puts "    time2sex 12:34:56"
+    puts "    time2secs 12:34:56"
 end

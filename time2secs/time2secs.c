@@ -39,7 +39,7 @@ int main(int argc, char *args[]) {
         puts("Please enter a command line arg");
         puts("HH:MM:SS");
         puts("Example:");
-        puts("  time2sex 12:34:56");
+        puts("  time2secs 12:34:56");
     }
     return 0;
 }

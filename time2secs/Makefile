@@ -1,4 +1,4 @@
-EXECUTABLE=time2sex
+EXECUTABLE=time2secs
 C=$(EXECUTABLE).c
 GO=$(EXECUTABLE).go
 JAVA=$(EXECUTABLE).java
@@ -41,5 +41,5 @@ install: $EXECUTABLE)
 
 clean: $(EXECUTABLE)
 	if [ -e $(EXECUTABLE) ]; then rm $(EXECUTABLE); fi
-	if [ -e "time2sex.class" ]; then rm time2sex.class; fi
+	if [ -e "time2secs.class" ]; then rm time2secs.class; fi
 

@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func time2sex(str string) int {
+func time2secs(str string) int {
 
 	var (
 		seconds     int
@@ -38,9 +38,9 @@ func reverse(s []string) {
 func main() {
 
 	if len(os.Args) == 2 {
-		fmt.Println("===", time2sex(os.Args[1]), "seconds ===")
+		fmt.Println("===", time2secs(os.Args[1]), "seconds ===")
 	} else {
 		fmt.Println("[Incorrect input]")
-		fmt.Println("example: ./time2sex 12:34:56")
+		fmt.Println("example: ./time2secs 12:34:56")
 	}
 }

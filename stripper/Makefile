@@ -41,5 +41,5 @@ install: $EXECUTABLE)
 
 clean: $(EXECUTABLE)
 	if [ -e $(EXECUTABLE) ]; then rm $(EXECUTABLE); fi
-	if [ -e "time2sex.class" ]; then rm time2sex.class; fi
+	if [ -e "$(EXECUTABLE).class" ]; then rm $(EXECUTABLE).class; fi
 
