@@ -5,6 +5,7 @@ JAVA=$(EXECUTABLE).java
 PY=$(EXECUTABLE).py
 RKT=$(EXECUTABLE).rkt
 RB=$(EXECUTABLE).rb
+HS=$(EXECUTABLE).hs
 
 help:
 	@echo 'make help:                this message'
@@ -14,7 +15,8 @@ help:
 	@echo 'make py:                  change python script permissions to executable'
 	@echo 'make rkt                  compile racket binary'
 	@echo 'make rb:                  change ruby script permissions to executable'
-	@echo 'make install:             install to /usr/bin"
+	@echo 'make hs                   compile haskell binary'
+	@echo 'make install:             install to /usr/bin'
 
 c: $(C)
 	gcc $(C) -o $(EXECUTABLE)
@@ -36,10 +38,14 @@ rb: $(RB)
 	cp $(RB) $(EXECUTABLE)
 	chmod 744 $(EXECUTABLE)
 
-install: $EXECUTABLE)
+hs: $(HS)
+	ghc $(HS)
+
+install: $(EXECUTABLE)
 	mv $(EXECUTABLE) /usr/bin/
 
-clean: $(EXECUTABLE)
+clean:
 	if [ -e $(EXECUTABLE) ]; then rm $(EXECUTABLE); fi
-	if [ -e "$(EXECUTABLE).class" ]; then rm $(EXECUTABLE).class; fi
-
+	if [ -e $(EXECUTABLE).class ]; then rm $(EXECUTABLE).class; fi
+	if [ -e $(EXECUTABLE).o ]; then rm $(EXECUTABLE).o; fi
+	if [ -e $(EXECUTABLE).hi ]; then rm $(EXECUTABLE).hi; fi
