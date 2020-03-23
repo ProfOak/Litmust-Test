@@ -10,3 +10,5 @@ This repo is a collection of small utilities I made to help myself in the past. 
 * stripper - Strip extra whitespace from files
 
 * sloc - Count source lines of codes in one or many files
+
+* gb-checker - Determine what level of GBC support a GB rom has
