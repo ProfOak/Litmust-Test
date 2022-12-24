@@ -2,23 +2,32 @@
 
 #define CGB_INDICATOR_BYTE 0x0143
 
-int main(int argc, char *argv[]) {
-
+// This magic byte address signifies which versions of Game Boy consoles can
+// play a specific game.
+int get_magic_byte(char *filename) {
     FILE *fp;
     int magic_byte;
+    fp = fopen(filename, "r");
+    fseek(fp, CGB_INDICATOR_BYTE, SEEK_SET);
+    magic_byte = fgetc(fp);
+    fclose(fp);
+    return magic_byte;
+}
 
-    for (int i=1; i<argc; i++) {
-        fp = fopen(argv[i], "r");
-        fseek(fp, CGB_INDICATOR_BYTE, SEEK_SET);
-        magic_byte = fgetc(fp);
+int main(int argc, char *argv[]) {
+
+    int magic_byte;
+
+    for (int i = 1; i < argc; i++) {
+        magic_byte = get_magic_byte(argv[i]);
         if (magic_byte == 0xC0) {
-            printf("0x%.2X: CGB only\n", magic_byte);
+            printf("CGB only     (0x%.2X): ", magic_byte);
         } else if (magic_byte == 0x80) {
-            printf("0x%.2X: Supports CGB\n", magic_byte);
+            printf("CGB enhanced (0x%.2X): ", magic_byte);
         } else {
-            printf("0x%.2X: No CGB support\n", magic_byte);
+            printf("GB only      (0x%.2X): ", magic_byte);
         }
-        fclose(fp);
+        printf("%s\n", argv[i]);
     }
     return 0;
 }
