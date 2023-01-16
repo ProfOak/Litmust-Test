@@ -1,10 +1,16 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"os"
 )
+
+type fileData struct {
+	Filename      string
+	Indicatorbyte byte
+}
 
 const cgbIndicatorByte = 0x0143
 
@@ -23,20 +29,36 @@ func getMagicByte(filename string) byte {
 	file.ReadAt(buffer, cgbIndicatorByte)
 	magicByte = buffer[0]
 	return magicByte
-
 }
 
 func main() {
+	var (
+		magicByte   byte
+		gbOnly      []fileData
+		cgbEnhanced []fileData
+		cgbOnly     []fileData
+	)
 
-	for _, filename := range os.Args[1:] {
-		var magicByte byte = getMagicByte(filename)
-		if magicByte == 0xC0 {
-			fmt.Printf("CGB only     (0x%.2X): ", magicByte)
-		} else if magicByte == 0x80 {
-			fmt.Printf("CGB enhanced (0x%.2X): ", magicByte)
-		} else {
-			fmt.Printf("GB only      (0x%.2X): ", magicByte)
+	flag.Parse()
+
+	for _, filename := range flag.Args() {
+		magicByte = getMagicByte(filename)
+		switch magicByte {
+		case 0xC0:
+			cgbOnly = append(cgbOnly, fileData{filename, magicByte})
+		case 0x80:
+			cgbEnhanced = append(cgbEnhanced, fileData{filename, magicByte})
+		default:
+			gbOnly = append(gbOnly, fileData{filename, magicByte})
 		}
-		fmt.Println(filename)
+	}
+	for _, data := range cgbOnly {
+		fmt.Printf("CGB only     (0x%.2X): %s\n", data.Indicatorbyte, data.Filename)
+	}
+	for _, data := range cgbEnhanced {
+		fmt.Printf("CGB enhanced (0x%.2X): %s\n", data.Indicatorbyte, data.Filename)
+	}
+	for _, data := range gbOnly {
+		fmt.Printf("GB only      (0x%.2X): %s\n", data.Indicatorbyte, data.Filename)
 	}
 }
